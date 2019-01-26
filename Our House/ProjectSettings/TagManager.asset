@@ -8,6 +8,8 @@ TagManager:
   - interactable
   - trinket
   - tm
+  - item
+  - em
   layers:
   - Default
   - TransparentFX

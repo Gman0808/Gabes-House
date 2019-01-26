@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[CreateAssetMenu(fileName = "PlayerInventory", menuName = "PlayerInventory")]
 public class Inventory : ScriptableObject
 {
 
     int currentItem = 0;
-    List<string> items = new List<string>();
+    public List<string> items = new List<string>();
 
     public int trinkets = 0;
 
+    //public EventLog eLogger = null;
 
-    void CycleItem(bool forward)
+
+    public void CycleItem(bool forward)
     {
         //If the player has no items, just leave.
         if (items.Count==0)
@@ -22,9 +26,10 @@ public class Inventory : ScriptableObject
         
         if (forward==true)
         {
+           
 
             //If the current item ISN'T the last item in the inventory
-            if (currentItem != items.Count )
+            if (currentItem != items.Count-1 )
             {
                 //Move to the next item.
                 ++currentItem;
@@ -55,6 +60,8 @@ public class Inventory : ScriptableObject
 
     void AddItem(string newItem)
     {
+
+        Debug.Log("test");
         items.Add(newItem);
     }
 
@@ -88,6 +95,23 @@ public class Inventory : ScriptableObject
     public string GetCurrentItem()
     {
         return items[currentItem];
+    }
+
+    public void PickupItem(GameObject itemToPickup)
+    {
+
+        AddItem(itemToPickup.name);
+
+        //display a textbox saying that the item has been added.
+
+        //Get the event manager.
+        GameObject em = GameObject.FindGameObjectWithTag("em");
+
+        //Log the fact that the item has been picked up!
+        em.GetComponent<EventManager>().log.ToggleEvent(itemToPickup.name);
+
+        GameObject.Destroy(itemToPickup);
+
     }
 
 

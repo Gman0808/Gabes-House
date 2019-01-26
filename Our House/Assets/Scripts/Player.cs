@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     int localObjects;
 
-    GameObject exclamationPoint;
+    public GameObject exclamationPoint;
 
 
     // Start is called before the first frame update
@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GetInput();
 
     }
 
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "interactable")
+        if (collision.gameObject.tag == "interactable" || collision.gameObject.tag == "item")
         {
 
             //Get a reference to the gameobject of the last thing that you touched.
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour
             
             //Turn on the exclamation point
             exclamationPoint.SetActive(true);
-        }
+        } 
         else if (collision.gameObject.tag == "trinket")
         {
             //Uptick the number of trinkets
@@ -50,14 +51,14 @@ public class Player : MonoBehaviour
 
             //Do whatever the trinket needs to do before it dies.
             collision.gameObject.GetComponent<Trinket>().Pickup();
-        }
+        } 
     }
 
     public void OnCollisionExit(Collision collision)
     {
         
         //If the player touches an interactable object
-        if (collision.gameObject.tag == "interactable")
+        if (collision.gameObject.tag == "interactable" || collision.gameObject.tag == "item")
         {
             --localObjects;
 
@@ -78,18 +79,64 @@ public class Player : MonoBehaviour
             //If the player is pressing the button to interact/pickup an item
             if (Input.GetButtonDown("interact") == true)
             {
+
+
+                if (objectReference.tag == "item")
+                {
+
+                
+                    //Get a temporary reference to the object.
+                    GameObject itemToPickup = objectReference;
+
+                    //Debug.Log(itemToPickup);
+
+                    //Get rid of our more permanant object reference.
+                    //objectReference = null;
+
+                    //Pick up the item
+                    inventory.PickupItem(objectReference);
+
+                    --localObjects;
+                    if (localObjects <=0)
+                    {
+                        localObjects = 0;
+                        exclamationPoint.SetActive(false);
+                    }
+                }
                 //If the player touched and object
                 //This should be apparent though because localobjects is greater than 0
                 //if (objectReference!=null)
                 //{
-                
+
+
+                if (objectReference.tag == "interactable") 
+                {
+                    objectReference.GetComponent<InteractableObject>().ReceiveObject(inventory.GetCurrentItem());
+                }
                 //Give the player's current object to the interactable object so thta it can check it.
-                objectReference.GetComponent<InteractableObject>().ReceiveObject(inventory.GetCurrentItem()); 
+      
                 //}
              
             }
 
         }
+
+
+        if (Input.GetButtonDown("cycle") == true)
+        {
+            if (Input.GetAxis("cycle") > 0)
+            {
+                inventory.CycleItem(true);
+                Debug.Log(inventory.GetCurrentItem());
+
+            }
+            else if (Input.GetAxis("cycle") < 0)
+            {
+                inventory.CycleItem(false);
+                Debug.Log(inventory.GetCurrentItem());
+            }
+        }
+       
 
     }
 

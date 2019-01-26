@@ -9,8 +9,12 @@ public class InteractableObject : MonoBehaviour
 
     public List<string> matchingObjects = new List<string>();
 
+    private void Start()
+    {
+        tag = "interactable";
+    }
     //Pass in the player's current item
-    public void ReceiveObject(string item)
+    public virtual void ReceiveObject(string item)
     {
 
         //For each item that the interactible object can match with
@@ -18,16 +22,21 @@ public class InteractableObject : MonoBehaviour
         {
 
             //If the player is inputting an item that matches:
-            if (matchingObjects[i] == item)
+            if (matchingObjects[i].ToUpper() == item.ToUpper())
             {
+          
                 //Do a thing, passing in the index of the thing we want to activate with.
                 Activate(i);
+            }
+            else
+            {
+                Debug.Log(matchingObjects[i] + " and " + item);
             }
         }
     }
 
     //Perform a different action depending on the context of the situation.
-    void Activate(int activationIndex)
+    protected virtual void Activate(int activationIndex)
     {
 
     }
