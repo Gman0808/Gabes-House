@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
-{ public float speed;
+{
+    public float speed;
     public float jumpForce;
-     CharacterController controller;
+    CharacterController controller;
     public Vector3 directionMove;
 
     public float gravScale;
@@ -13,45 +14,55 @@ public class Movement : MonoBehaviour
 
     public Animator animator;
     Vector3 foward, right;
-    
+
 
     public bool faceRight;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
         foward = Camera.main.transform.forward;
         foward.y = 0;
         foward = Vector3.Normalize(foward);
         right = Quaternion.Euler(new Vector3(0, 90, 0)) * foward;
         controller = GetComponent<CharacterController>();
-      //  rend = GetComponent<SpriteRenderer>();
-     //   DontDestroyOnLoad(this);
+        //  rend = GetComponent<SpriteRenderer>();
+        //   DontDestroyOnLoad(this);
 
- 
-    
+
+
 
     }
 
 
-	
-	// Update is called once per frame
-	void Update () {
-       
-        directionMove = new Vector3(Input.GetAxis("Horizontal") * speed, directionMove.y, Input.GetAxis("Vertical") * speed);
+
+    // Update is called once per frame
+    void Update()
+    {
+
+
+        Vector3 rightMovement = right * speed * Time.deltaTime * Input.GetAxis("Horizontal");
+        Vector3 upMovement = foward * speed * Time.deltaTime * Input.GetAxis("Vertical");
+        Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
+        //transform.forward = heading;
+        directionMove = new Vector3(0, directionMove.y, 0);
+        directionMove += upMovement;
+        directionMove += rightMovement;
+
 
         //Instead of keeping player, make a gameobject decide players position
         if (Input.GetAxis("Horizontal") < 0 && faceRight)
         {
-          //  rend.flipX = true;
-          //  faceRight = false;
+            //  rend.flipX = true;
+            //  faceRight = false;
         }
         if (Input.GetAxis("Horizontal") > 0 && !faceRight)
         {
-          //  rend.flipX = false;
-         //   faceRight =true;
+            //  rend.flipX = false;
+            //   faceRight =true;
         }
 
-      
+
 
         if (controller.isGrounded)
         {
@@ -59,13 +70,13 @@ public class Movement : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 directionMove.y = jumpForce;
-           
+
             }
         }
         if (!controller.isGrounded)
         {
             directionMove.y = directionMove.y + (Physics.gravity.y * gravScale * Time.deltaTime);
-         
+
         }
 
         controller.Move(directionMove * Time.deltaTime);

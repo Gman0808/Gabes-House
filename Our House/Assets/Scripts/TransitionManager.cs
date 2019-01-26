@@ -23,9 +23,9 @@ public class TransitionManager : MonoBehaviour
         waiting,
         fading,
         unfading,
-
+        
     }
-    public static TransitionStates currentState = TransitionStates.fading;
+    public static TransitionStates currentState = TransitionStates.unfading;
 
     public enum LoadMode
     {
@@ -101,7 +101,7 @@ public class TransitionManager : MonoBehaviour
 
                 float blackRatio = Mathf.Lerp(1, 0, darkenFrames/ maxDarkenFrames);
 
-                Debug.Log(blackRatio);
+
 
                 blackCover.color = new Color(blackCover.color.r, blackCover.color.g, blackCover.color.b, blackRatio);
 
@@ -117,11 +117,13 @@ public class TransitionManager : MonoBehaviour
 
                             //Load the scene
                             SceneManager.LoadScene(sceneToLoad);
+                            currentLoadMode = LoadMode.none;
 
                             break;
 
                         case LoadMode.movingPlayer:
 
+                            Debug.Log("movePlayer");
                             //Move the player to the new position
                             player.transform.position = newPosition;
 
@@ -138,7 +140,7 @@ public class TransitionManager : MonoBehaviour
                     }
                     #endregion Transition
 
-                    currentState = TransitionStates.unfading;
+                    SetTransitionState(TransitionStates.unfading);
                 }
 
                 break;
@@ -158,7 +160,8 @@ public class TransitionManager : MonoBehaviour
 
                 if (darkenFrames >= maxDarkenFrames)
                 {
-                    currentState = TransitionStates.waiting;
+           
+                    SetTransitionState(TransitionStates.waiting);
                 }
 
                 break;
@@ -176,12 +179,13 @@ public class TransitionManager : MonoBehaviour
         currentLoadMode = LoadMode.loading;
 
         //Load the specified scene.
-        sceneToLoad = null;
+        sceneToLoad = sceneName;
         SetTransitionState(TransitionStates.fading);
     }
 
     public void MovePlayerPosition(Vector3 positionToMove, GameObject playerReference)
     {
+        
         currentLoadMode = LoadMode.movingPlayer;
         newPosition = positionToMove;
         player = playerReference;
@@ -197,18 +201,24 @@ public class TransitionManager : MonoBehaviour
         switch (currentState)
         {
 
+            case TransitionStates.waiting:
+                blackCover.gameObject.SetActive(false);
+                //Debug.Log("turnOff");
+                break;
+
             case TransitionStates.fading:
 
-                darkenFrames = 0;
-                transitionFrames = 0;
+                blackCover.gameObject.SetActive(true);
+                darkenFrames = maxDarkenFrames;
+                transitionFrames = maxTransitionFrames;
                 blackCover.color = new Color(blackCover.color.r, blackCover.color.g, blackCover.color.b, 0);
 
                 break;
 
             case TransitionStates.unfading:
                
-                darkenFrames = maxDarkenFrames;
-                transitionFrames = maxTransitionFrames;
+                darkenFrames = 0;
+                transitionFrames = 0;
                 blackCover.color = new Color(blackCover.color.r, blackCover.color.g, blackCover.color.b, 1);
                 break;
       
