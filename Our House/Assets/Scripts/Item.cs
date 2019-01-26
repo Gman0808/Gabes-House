@@ -8,14 +8,14 @@ public class Item : MonoBehaviour
     void Start()
     {
         this.tag = "item";
-        this.name = gameObject.name;
+        //this.name = gameObject.name;
 
         //Get the event manager.
         EventManager em = GameObject.FindGameObjectWithTag("em").GetComponent<EventManager>();
 
       
         //The gameobject should destroy itself immediately if it has already been picked up.
-        if (em.log.CheckEventOccured(gameObject.name) == true)
+        if (em.log.CheckEvent(gameObject.name) == true)
         {
             Destroy(gameObject);
         }

@@ -806,6 +806,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 76369410753746877, guid: 25934a59ab4863145bd43a5d6bbb0a8c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 76369410753746877, guid: 25934a59ab4863145bd43a5d6bbb0a8c,
+        type: 3}
+      propertyPath: shader
+      value: 
+      objectReference: {fileID: 4800000, guid: 95703b29f49b899499233ea7308bb800, type: 3}
+    - target: {fileID: 76369410753746877, guid: 25934a59ab4863145bd43a5d6bbb0a8c,
+        type: 3}
+      propertyPath: BlockCount
+      value: 261
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25934a59ab4863145bd43a5d6bbb0a8c, type: 3}
 --- !u!1 &1881872028

@@ -8,28 +8,53 @@ using UnityEngine;
 public class EventLog : ScriptableObject
 {
     //A list of all the events that have occured in the game.
-   public Dictionary<string, bool> events = new Dictionary<string, bool>();
+   //public Dictionary<string, bool> events = new Dictionary<string, bool>();
 
-    List<string> eventNames;
+    public List<string> events;
     
-    public void ToggleEvent(string eventName, bool add = true)
+    public void ToggleEvent(string eventName, bool remove = false)
     {
         //If the event hasn't already happened yet
-        if (eventNames.Contains(eventName) == false)
+        if (events.Contains(eventName) == false)
         {
             //Mark it as already having happend
-            eventNames.Add(eventName);
+            events.Add(eventName);
         }
         else
         {
+            //If the function wants to remove the event for some reason.
+            if (remove == true)
+            {
+                int indexToRemove = -1;
+                for (int i = 0; i < eventName.Length; i++)
+                {
+                    //Get the index of the thing we want to remove
+                    if (events[i] == eventName)
+                    {
+                        indexToRemove = i;  
+                    }
+                }
 
+                //Remove it.
+                events.RemoveAt(indexToRemove);
+            }
         }
     }
 
-    public void CheckEvent()
+    public bool CheckEvent(string eventName)
+    {
+        //Return whether or not the event exists.
+        return events.Contains(eventName);
+    }
 
 
+    public void ClearEvents()
+    {
+        events.Clear();
+    }
 
+
+    /*
     public void ToggleEvent(string eventName, bool eventOccured = true)
     {
         //If the event actually exists in the dictionary, mark its presence appropriately.
@@ -91,5 +116,6 @@ public class EventLog : ScriptableObject
             Debug.Log(entry.Key);
         }
     }
+    */
    
 }
