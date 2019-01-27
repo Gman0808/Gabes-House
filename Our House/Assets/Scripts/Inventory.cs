@@ -7,7 +7,7 @@ using UnityEngine;
 public class Inventory : ScriptableObject
 {
 
-    int currentItem = 0;
+    public int currentItem = 0;
     public List<string> items = new List<string>();
 
     public int trinkets = 0;
@@ -18,17 +18,19 @@ public class Inventory : ScriptableObject
     public void CycleItem(bool forward)
     {
         //If the player has no items, just leave.
-        if (items.Count==0)
+        if (items.Count < 2)
         {
             return;
         }
 
         
+        Debug.Log("blarg");
+        
         if (forward==true)
         {
            
 
-            //If the current item ISN'T the last item in the inventory
+            //If the current item ISN'T the last item in tfhe inventory
             if (currentItem != items.Count-1 )
             {
                 //Move to the next item.
@@ -56,6 +58,8 @@ public class Inventory : ScriptableObject
                 currentItem = items.Count - 1;
             }
         }
+
+        Debug.Log(currentItem);
     }
 
     void AddItem(string newItem)
@@ -94,6 +98,7 @@ public class Inventory : ScriptableObject
     //Return the string of the current item
     public string GetCurrentItem()
     {
+        Debug.Log(currentItem);
         return items[currentItem];
     }
 

@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerUI = gameObject.GetComponent<UI>();
-       
+      
+        
     }
 
     // Update is called once per frame
@@ -114,6 +115,7 @@ public class Player : MonoBehaviour
             
                 if (objectReference.tag == "interactable" && inventory.items.Count>0) 
                 {
+                   
                     objectReference.GetComponent<InteractableObject>().ReceiveObject(inventory.GetCurrentItem());
                 }
                 //Give the player's current object to the interactable object so thta it can check it.
@@ -127,16 +129,18 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("cycle") == true)
         {
+
+         
             if (Input.GetAxis("cycle") > 0)
             {
                 inventory.CycleItem(true);
-                Debug.Log(inventory.GetCurrentItem());
+                
 
             }
             else if (Input.GetAxis("cycle") < 0)
             {
                 inventory.CycleItem(false);
-                Debug.Log(inventory.GetCurrentItem());
+      
             }
         }
        

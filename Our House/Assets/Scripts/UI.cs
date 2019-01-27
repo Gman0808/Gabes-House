@@ -21,7 +21,6 @@ public class UI : MonoBehaviour
 
     Queue<char> charQueue = new Queue<char>();
 
-    int nextLetterIndex = 0;
 
 
     public float maxLerpFrames = 100;
@@ -48,31 +47,38 @@ public class UI : MonoBehaviour
         if (displayText == true)
         {
             LerpTextDisplay();
-            // --displayFrames;
-
-            // if (displayFrames <=0)
-            //{
-            //   displayText = false;
-            //}
+       
         }
-        else
-        {
-
-        }
+    
     }
 
     public void DisplayMessage(string text)
     {
+
+        //The screen will display text
         displayText = true;
 
+        //Clear anything from previous displaymessage calls
         currentText = "";
+
+        //Things will appear on screen
+        fading = false;
+
+        //Allow for the text to wait a minute.
+        textDelayFrames = maxTextDelayFrames;
+
+        //Make sure the queue is good before displaying another message.
+        charQueue.Clear();
+
+        charWaitFrames = maxCharWaitFrames;
+
+        currentLerpFrames = 0;
 
         for (int i = 0; i < text.Length; i++)
         {
             charQueue.Enqueue(text[i]);
         }
 
-        currentLerpFrames = 0;
 
  
     }
@@ -89,6 +95,8 @@ public class UI : MonoBehaviour
                 charWaitFrames = maxCharWaitFrames;
                 currentText += charQueue.Dequeue();
                 textBox.text = currentText;
+
+                Debug.Log("TESTINGTESTIGN");
 
             }
            
@@ -118,12 +126,9 @@ public class UI : MonoBehaviour
             panelImage.color = new Color(0, 0, 0, currentLerpFrames / maxLerpFrames);
 
             textBox.color = new Color(255,255, 255, currentLerpFrames / maxLerpFrames);
+
+
         
-    }
-
-    void Continue()
-    {
-
     }
 
     public void DisplayPickupMessage(string itemName)

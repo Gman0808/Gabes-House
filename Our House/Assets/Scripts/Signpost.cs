@@ -41,13 +41,13 @@ public class Signpost : InteractableObject
         if (powerOn == false)
         {
             this.Activate();
-            Debug.Log("You read the sign");
+            LogToScreen("The sign says: 'e'");
 
         }
         else
         {
             //Log "The light is too bright. You cannot read the sign.
-            Debug.Log("LIGHT IS TOO BRIGHT");
+            Debug.Log("There is too much light and sparks to read the sign.");
         }
     }
 

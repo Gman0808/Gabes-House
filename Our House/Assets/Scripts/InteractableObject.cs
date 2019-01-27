@@ -8,6 +8,7 @@ public class InteractableObject : MonoBehaviour
     //List<string> messages = new List<string>();
 
     public List<string> matchingObjects = new List<string>();
+    public List<string> responseStrings = new List<string>();
 
     protected virtual void Start()
     {
@@ -30,7 +31,7 @@ public class InteractableObject : MonoBehaviour
             }
             else
             {
-                Debug.Log(matchingObjects[i] + " and " + item);
+                LogToScreen("fuck you.");
             }
         }
     }
@@ -39,6 +40,13 @@ public class InteractableObject : MonoBehaviour
     protected virtual void Activate(int activationIndex = 0)
     {
 
+    }
+
+    protected virtual void LogToScreen(string text)
+    {
+        UI userInterface = GameObject.FindGameObjectWithTag("player").GetComponent<UI>();
+
+        userInterface.DisplayMessage(text);
     }
 
 

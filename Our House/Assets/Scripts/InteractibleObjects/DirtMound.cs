@@ -26,6 +26,7 @@ public class DirtMound : InteractableObject
     }
     protected override void Activate(int activationIndex)
     {
+        LogToScreen("You dug up a key with the melted spoon.");
         //Get the event manager
         EventManager em = GameObject.FindGameObjectWithTag("em").GetComponent<EventManager>();
 
