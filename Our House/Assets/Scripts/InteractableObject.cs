@@ -15,8 +15,19 @@ public class InteractableObject : MonoBehaviour
         tag = "interactable";
     }
     //Pass in the player's current item
-    public virtual void ReceiveObject(string item = null)
+    public virtual void Interact(string item = null)
     {
+
+        Match(item);
+   
+    }
+
+    protected virtual void Match(string item)
+    {
+        if (item==null)
+        {
+            return;
+        }
 
         //For each item that the interactible object can match with
         for (int i = 0; i < matchingObjects.Count; i++)
@@ -25,7 +36,7 @@ public class InteractableObject : MonoBehaviour
             //If the player is inputting an item that matches:
             if (matchingObjects[i].ToUpper() == item.ToUpper())
             {
-          
+
                 //Do a thing, passing in the index of the thing we want to activate with.
                 Activate(i);
             }
