@@ -9,11 +9,11 @@ public class Inventory : ScriptableObject
 
     int currentItem = 0;
     public List<string> items = new List<string>();
-
     public int trinkets = 0;
 
     //public EventLog eLogger = null;
 
+    
 
     public void CycleItem(bool forward)
     {

@@ -14,4 +14,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Garden.unity
     guid: 8a387da4343b3414ea9fe2009c0559e3
+  - enabled: 1
+    path: Assets/MattsJunk/LivingRoom.unity
+    guid: 8b9d4f87339b175449b870d1dab41249
+  - enabled: 1
+    path: Assets/MattsJunk/BedRoom.unity
+    guid: a941b1aa204713b4498badee5ccbeb74
+  - enabled: 1
+    path: Assets/MattsJunk/Basement.unity
+    guid: aedc8f0f01e24884aa252f1f19f1d8e0
+  - enabled: 1
+    path: Assets/MattsJunk/SiblingRoom.unity
+    guid: ae7dd58ae3e873748a683854b8e838e7
+  - enabled: 1
+    path: Assets/MattsJunk/StairRoom.unity
+    guid: c5ff235cb738bd0478249cf804d180a5
+  - enabled: 1
+    path: Assets/Batroom.unity
+    guid: f7839a3d8dd2b2b4eab21e39700bdb7c
+  - enabled: 1
+    path: Assets/Dining Room.unity
+    guid: 5203d1a85b801e44eb70fec021845dae
   m_configObjects: {}

@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30e6788b9643114895a22316a83ab0b, type: 3}
   m_Name: EventLog
   m_EditorClassIdentifier: 
-  events:
-  - Item
+  events: []

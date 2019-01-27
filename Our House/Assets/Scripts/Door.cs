@@ -6,11 +6,25 @@ using UnityEngine.SceneManagement;
 public class Door : MonoBehaviour
 {
     public string loadName = "Test Scene";
-    public GameObject warpTo = null;
+   static public string warp= null;
+     public string warpTo = null;
+    public GameObject warpObject = null;
 
+
+    public void Start()
+    {
+       
+        warpObject = GameObject.Find(warp);
+        GameObject player = GameObject.FindGameObjectWithTag("player");
+
+        //Move the player to the location of the warpTo object
+
+        // manager.MovePlayerPosition(warpObject.transform.position, player);
+        player.transform.position = warpObject.transform.position;
+    }
     private void OnCollisionEnter(Collision collision)
     {
-   
+       
         //If the door collides with the player.
         if (collision.gameObject.tag == "player")
         {
@@ -21,15 +35,20 @@ public class Door : MonoBehaviour
 
                 //Move the player to the location of the warpTo object
                 TransitionManager manager = GameObject.FindGameObjectWithTag("tm").GetComponent<TransitionManager>();
-                manager.MovePlayerPosition(warpTo.transform.position, collision.gameObject);
+                
+                manager.MovePlayerPosition(warpObject.transform.position, collision.gameObject);
             }
             else
             {
+                warp = warpTo;
                 Debug.Log(loadName);
                 Debug.Log("LOAD SCENE");
                 //Load the specified scene using the transition manager
                 TransitionManager manager = GameObject.FindGameObjectWithTag("tm").GetComponent<TransitionManager>();
                 manager.LoadScene(loadName);
+              //  warpObject = GameObject.Find(warp);
+               // manager.MovePlayerPosition(warpObject.transform.position, collision.gameObject);
+
             }
         } 
     }
