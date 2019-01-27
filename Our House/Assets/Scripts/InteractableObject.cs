@@ -8,13 +8,14 @@ public class InteractableObject : MonoBehaviour
     //List<string> messages = new List<string>();
 
     public List<string> matchingObjects = new List<string>();
+    public List<string> responseStrings = new List<string>();
 
-    private void Start()
+    protected virtual void Start()
     {
         tag = "interactable";
     }
     //Pass in the player's current item
-    public virtual void ReceiveObject(string item)
+    public virtual void ReceiveObject(string item = null)
     {
 
         //For each item that the interactible object can match with
@@ -30,15 +31,22 @@ public class InteractableObject : MonoBehaviour
             }
             else
             {
-                Debug.Log(matchingObjects[i] + " and " + item);
+                LogToScreen("fuck you.");
             }
         }
     }
 
     //Perform a different action depending on the context of the situation.
-    protected virtual void Activate(int activationIndex)
+    protected virtual void Activate(int activationIndex = 0)
     {
 
+    }
+
+    protected virtual void LogToScreen(string text)
+    {
+        UI userInterface = GameObject.FindGameObjectWithTag("player").GetComponent<UI>();
+
+        userInterface.DisplayMessage(text);
     }
 
 
