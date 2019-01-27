@@ -14,7 +14,7 @@ public class InteractableObject : MonoBehaviour
         tag = "interactable";
     }
     //Pass in the player's current item
-    public virtual void ReceiveObject(string item)
+    public virtual void ReceiveObject(string item = null)
     {
 
         //For each item that the interactible object can match with
@@ -36,7 +36,7 @@ public class InteractableObject : MonoBehaviour
     }
 
     //Perform a different action depending on the context of the situation.
-    protected virtual void Activate(int activationIndex)
+    protected virtual void Activate(int activationIndex = 0)
     {
 
     }

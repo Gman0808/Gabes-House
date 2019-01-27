@@ -11,11 +11,14 @@ public class Player : MonoBehaviour
 
     public GameObject exclamationPoint;
 
+    UI playerUI;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+        playerUI = gameObject.GetComponent<UI>();
+       
     }
 
     // Update is called once per frame
@@ -90,6 +93,10 @@ public class Player : MonoBehaviour
 
                     //Pick up the item
                     inventory.PickupItem(objectReference);
+
+                    playerUI.DisplayPickupMessage(objectReference.name);
+
+                    
 
                     --localObjects;
                     if (localObjects <=0)
