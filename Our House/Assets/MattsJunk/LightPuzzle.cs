@@ -9,14 +9,17 @@ public class LightPuzzle : MonoBehaviour
     public Material matOn;
     public GameObject[] lights;
     public bool power;
-    
-   public  int[] lightsOn = { 0, 0, 0, 0, 0 }; //0-lights off, 1- lights on
+
+
+    public GameObject[] thunder;
+   public static int[] lightsOn = { 0, 0, 0, 0, 0 }; //0-lights off, 1- lights on
 
     // Start is called before the first frame update
     void Start()
     {
         lights = GameObject.FindGameObjectsWithTag("lightbulb");
         power = true;
+        thunder = GameObject.FindGameObjectsWithTag("ThunderWall");
      
     }
 
@@ -51,34 +54,51 @@ public class LightPuzzle : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F5))
             hit5();
 
+
+        if (power)
+        {
+            foreach (var thun in thunder)
+            {
+                if(thun.activeSelf)
+                thun.SetActive(false);
+            }
+        }
+        else
+        {
+            foreach (var thun in thunder)
+            {
+                if (!thun.activeSelf)
+                    thun.SetActive(true);
+            }
+        }
+
     }
 
-    void hit1()
+  public  void hit1()
     {
         lightsOn[0]++;
         lightsOn[2]++;
         lightsOn[3]++;
     }
-    void hit2()
+ public   void hit2()
     {
         lightsOn[1]++;
         lightsOn[3]++;
         lightsOn[4]++;
 
     }
-    void hit3()
+  public  void hit3()
     {
         lightsOn[1]++;
         lightsOn[2]++;
         lightsOn[3]++;
     }
-    void hit4()
+  public  void hit4()
     {
         lightsOn[4]++;
-
-      
+    
     }
-    void hit5()
+ public   void hit5()
     {
         lightsOn[4]++;
         lightsOn[0]++;

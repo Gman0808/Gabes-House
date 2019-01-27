@@ -10,6 +10,8 @@ TagManager:
   - tm
   - item
   - em
+  - lightbulb
+  - ThunderWall
   layers:
   - Default
   - TransparentFX

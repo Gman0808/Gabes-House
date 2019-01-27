@@ -8,6 +8,7 @@ public class BedCodeManager : MonoBehaviour
    public int count = 0;
   GameObject key;
     string[] bedList = { "Yellow", "Blue", "Red", "Blue", "Green", "Brown" };
+ 
     // Start is called before the first frame update
     void Start()
     {
