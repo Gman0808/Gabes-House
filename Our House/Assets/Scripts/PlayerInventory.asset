@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abda76e368cdf7149b0792726d75f739, type: 3}
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
+  items:
+  - shovel
+  - Key2
+  - BowlingBall
   trinkets: 0

@@ -26,11 +26,6 @@ public class Player : MonoBehaviour
     }
 
 
-    void UseItem()
-    {
-        
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "interactable" || collision.gameObject.tag == "item")
@@ -109,7 +104,8 @@ public class Player : MonoBehaviour
                 //{
 
 
-                if (objectReference.tag == "interactable") 
+            
+                if (objectReference.tag == "interactable" && inventory.items.Count>0) 
                 {
                     objectReference.GetComponent<InteractableObject>().ReceiveObject(inventory.GetCurrentItem());
                 }

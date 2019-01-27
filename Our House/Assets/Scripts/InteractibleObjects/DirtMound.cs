@@ -6,11 +6,23 @@ public class DirtMound : InteractableObject
 {
     public GameObject key;
 
-    private void Start()
+
+    protected override void Start()
     {
-        Debug.Log(this.tag);
+        base.Start();
+
         //The key should not exist normally.
         key.SetActive(false);
+
+        //Get the event manager
+        EventManager em = GameObject.FindGameObjectWithTag("em").GetComponent<EventManager>();
+
+       
+        if (em.log.CheckEvent("Key2"))
+        {
+            this.tag = "Untagged";
+        }
+
     }
     protected override void Activate(int activationIndex)
     {
@@ -30,8 +42,8 @@ public class DirtMound : InteractableObject
         //Let the key exist.
         key.SetActive(true);
 
-        //destroy this dirt mound
-        GameObject.Destroy(gameObject);
+
+        matchingObjects.Clear();
 
     }
 }

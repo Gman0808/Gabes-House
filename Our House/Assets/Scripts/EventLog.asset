@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: EventLog
   m_EditorClassIdentifier: 
   events:
-  - Item
+  - Dirt Mound
+  - Key2
+  - BowlingBall

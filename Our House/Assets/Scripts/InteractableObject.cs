@@ -9,7 +9,7 @@ public class InteractableObject : MonoBehaviour
 
     public List<string> matchingObjects = new List<string>();
 
-    private void Start()
+    protected virtual void Start()
     {
         tag = "interactable";
     }
