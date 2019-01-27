@@ -113,10 +113,10 @@ public class Player : MonoBehaviour
 
 
             
-                if (objectReference.tag == "interactable" && inventory.items.Count>0) 
+                if (objectReference.tag == "interactable") 
                 {
                    
-                    objectReference.GetComponent<InteractableObject>().ReceiveObject(inventory.GetCurrentItem());
+                    objectReference.GetComponent<InteractableObject>().Interact(inventory.GetCurrentItem());
                 }
                 //Give the player's current object to the interactable object so thta it can check it.
       

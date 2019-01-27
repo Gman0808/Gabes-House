@@ -30,7 +30,7 @@ public class Signpost : InteractableObject
         base.Start();
     }
 
-    public override void ReceiveObject(string item = null)
+    public override void Interact(string item = null)
     {
         //base.ReceiveObject(item);
 
