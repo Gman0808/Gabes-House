@@ -13,14 +13,17 @@ public class Door : MonoBehaviour
 
     public void Start()
     {
+       if(warp != null)
+        {
+            warpObject = GameObject.Find(warp);
+            GameObject player = GameObject.FindGameObjectWithTag("player");
+
+            //Move the player to the location of the warpTo object
+
+            // manager.MovePlayerPosition(warpObject.transform.position, player);
+            player.transform.position = warpObject.transform.position;
+        }
        
-        warpObject = GameObject.Find(warp);
-        GameObject player = GameObject.FindGameObjectWithTag("player");
-
-        //Move the player to the location of the warpTo object
-
-        // manager.MovePlayerPosition(warpObject.transform.position, player);
-        player.transform.position = warpObject.transform.position;
     }
     private void OnCollisionEnter(Collision collision)
     {
