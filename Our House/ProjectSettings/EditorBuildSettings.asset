@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScene.unity
     guid: 4f160dc0464ee4e4bae037d97eb25b70
+  - enabled: 1
+    path: Assets/Garden.unity
+    guid: 8a387da4343b3414ea9fe2009c0559e3
   m_configObjects: {}

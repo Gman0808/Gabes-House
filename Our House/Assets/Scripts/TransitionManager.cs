@@ -190,6 +190,8 @@ public class TransitionManager : MonoBehaviour
         newPosition = positionToMove;
         player = playerReference;
 
+   
+
         SetTransitionState(TransitionStates.fading);
     }
 
@@ -212,6 +214,8 @@ public class TransitionManager : MonoBehaviour
                 darkenFrames = maxDarkenFrames;
                 transitionFrames = maxTransitionFrames;
                 blackCover.color = new Color(blackCover.color.r, blackCover.color.g, blackCover.color.b, 0);
+
+                GameObject.FindGameObjectWithTag("player").GetComponent<Movement>().enabled = false;
 
                 break;
 

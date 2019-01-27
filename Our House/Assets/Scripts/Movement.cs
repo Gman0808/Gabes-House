@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
     public Animator animator;
     Vector3 foward, right;
 
+    //public bool movable;
 
     public bool faceRight;
     // Use this for initialization
@@ -31,7 +32,6 @@ public class Movement : MonoBehaviour
 
 
 
-
     }
 
 
@@ -39,7 +39,12 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        /*
+        if (movable == false)
+        {
+            return;
+        }
+        */
 
         Vector3 rightMovement = right * speed * Time.deltaTime * Input.GetAxis("Horizontal");
         Vector3 upMovement = foward * speed * Time.deltaTime * Input.GetAxis("Vertical");
